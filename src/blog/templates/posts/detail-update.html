@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} detail-update || {{block.super}} {% endblock %}
+
+{% block content %}<br>
+
+
+<h3> {{form.instance.title}}<small>{{form.instance.created}}</small></h3>
+	{% if form.instance.image %}
+	<img src="{{ form.instance.image.url }}">
+	{% endif %}
+	<p>{{form.instance.content}}</p>
+	<p>{{form.instance.timestamp}}<br> updated {{form.instance.updated | timesince}} ago</p>
+<hr>
+<h2>Make changes</h2>
+
+{% include 'posts/post_form.html' with form=form %}
+
+
+
+{% endblock content %}

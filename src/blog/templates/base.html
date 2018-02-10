@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %} RiverLearn {% endblock %} </title>
+	{% include 'snippets/css.html' %}
+</head> 
+<body>
+
+
+<div >
+   <div >
+			<div >
+				
+	            	<h2>RiverLearn</h2>
+	    			{% include 'snippets/nav.html' %}
+
+					{% block content %}
+				
+		
+					{% endblock %}
+					{% include 'snippets/js.html' %}
+             
+        	</div>
+    </div>
+ </div>
+
+		
+</body>
+</html>

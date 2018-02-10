@@ -1,13 +1,19 @@
 from django.db import models
 from django.db.models.signals import pre_save,post_save
 from django.urls import reverse
+from django.conf import settings
 
 from .utils import unique_slug_generator
 
+def upload_location(instance, filename):
+	return	'%s/%s'	%(instance.title, filename)
+
 class Post(models.Model):
+	user 			= models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
 	title 			= models.CharField(max_length=30)
 	content 		= models.TextField()
-	image 			= models.ImageField(null=True,
+	image 			= models.ImageField(upload_to=upload_location,
+										null=True,
 	 									blank=True,
 	 									height_field='height_field',
 	 									width_field='width_field'

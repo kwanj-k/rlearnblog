@@ -5,11 +5,12 @@ from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.utils import timezone
 from .models import Post
 from .forms import PostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class PostListView(ListView):
 	model 				= Post
-	paginate_by 		= 10
+	paginate_by 		= 6
 	def get_context_data(self ,**kwargs):
 		context 		= super().get_context_data(**kwargs)
 		context['now'] 	= timezone.now()
@@ -27,12 +28,12 @@ class PostDetailView(DetailView):
         return context
 
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
 	form_class 		=  PostForm
 	template_name 	=  'posts/post_form.html'
 	def form_valid(self, form):
 		instance 		= form.save(commit=False)
-		#instance.owner 	= self.request.user
+		instance.user 	= self.request.user
 		return super (PostCreateView, self).form_valid(form)
 
 	def get_context_data(self, *args, **kwargs):
@@ -41,16 +42,16 @@ class PostCreateView(CreateView):
 		return context
 
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
 	form_class 		= PostForm
 	template_name 	= 'posts/detail-update.html'
 
 	def get_queryset(self):
-		return Post.objects.all()
+		return Post.objects.filter(user=self.request.user)
 
 	def form_valid(self, form):
 		instance 		= form.save(commit=False)
-		#instance.owner 	= self.request.user
+		instance.user 	= self.request.user
 		return super (PostUpdateView, self).form_valid(form)
 
 

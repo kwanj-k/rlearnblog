@@ -3,29 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{% block title %} RiverLearn {% endblock %} </title>
+	<title>{% block title %} RiverLearn{% endblock %} </title>
 	{% include 'snippets/css.html' %}
 </head> 
-<body>
+{% autoescape on %}
 
+	<body style="background-color: ivory;">
 
-<div >
-   <div >
-			<div >
+			<div class="ui two column centered grid">
+	  			<div class="column">
+	  				<div class="ui inverted  stacked segment">
 				
-	            	<h2>RiverLearn</h2>
-	    			{% include 'snippets/nav.html' %}
+								<h2>Welcome To The RiverLearn Blog</h2>
+								{% include 'snippets/nav.html' %}
 
-					{% block content %}
-				
-		
-					{% endblock %}
-					{% include 'snippets/js.html' %}
-             
-        	</div>
-    </div>
- </div>
+								{% block content %}
+							
 
-		
-</body>
+								{% endblock %}
+								{% include 'snippets/js.html' %}
+					</div>
+				</div>
+			</div>
+
+	</body>
+{% endautoescape %}
 </html>

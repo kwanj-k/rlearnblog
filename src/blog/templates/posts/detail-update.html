@@ -5,15 +5,29 @@
 
 
 <h3> {{form.instance.title}}<small>{{form.instance.created}}</small></h3>
-	{% if form.instance.image %}
-	<img src="{{ form.instance.image.url }}">
-	{% endif %}
-	<p>{{form.instance.content}}</p>
-	<p>{{form.instance.timestamp}}<br> updated {{form.instance.updated | timesince}} ago</p>
-<hr>
-<h2>Make changes</h2>
+<div class="ui right aligned grid">
+    <div class="center aligned two column row">
+        <div class=" column">
+        {% if form.instance.image %}
+        <img class="ui medium rounded image"src="{{ form.instance.image.url  }}">
+        {% endif %}
+        </div>
+        <div class="column">
+        	<div class="description">
+        		<h4>{{form.instance.content}}</h4>
+        	</div>
+	        
+			<p>	{{form.instance.timestamp}}<br>
+				updated {{form.instance.updated | timesince}} ago</p>
+				Aurthor: {{form.instance.user}}
+        </div>
+    </div>
+</div>
+	<div class="ui divider"></div>
 
-{% include 'posts/post_form.html' with form=form %}
+	<h2>Make changes</h2>
+
+	{% include 'snippets/snipp-form.html' with form=form %}
 
 
 

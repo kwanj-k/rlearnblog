@@ -2,8 +2,6 @@
 {% block title %} {{ object.title }} {{block.super}} {% endblock %}
 
 {% block content %}
-<div class="ui form">
-	<div class="field">
 		<form class="ui form" method="POST" action=""  enctype="multipart/form-data">{% csrf_token %}
 			{{ form.as_p }}
 			<button class="ui button" type="submit">Save</button>

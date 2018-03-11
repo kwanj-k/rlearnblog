@@ -10,7 +10,7 @@ def upload_location(instance, filename):
 
 class Post(models.Model):
 	user 			= models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
-	title 			= models.CharField(max_length=30)
+	title 			= models.CharField(max_length=50)
 	content 		= models.TextField()
 	image 			= models.ImageField(upload_to=upload_location,
 										null=True,

@@ -19,16 +19,26 @@
     {{ i.title }}<br>
     {% endif %}
 </h3>
+{% if i.image %}
 <div class="ui right aligned grid">
     <div class="center aligned two column row">
         <div class=" column">
-        {% if i.image %}
-        <img class="ui medium rounded image" src="{{ i.image.url }}">
-        {% endif %}
+         <p style="text-align: left; text-align-last: start;" >{{ i.content }}</p>
         </div>
-        <div class="column"> {{ i.content }}</div>
+        <div class="column"> 
+        <img class="ui large rounded image" src="{{ i.image.url }}">
+    
+       </div>
     </div>
 </div>
+
+{% else %}
+
+<p>
+    {{ i.content }}<br>
+</p>
+
+{% endif %}
 <div class="ui divider"></div>
 {% empty %}
     <p>No posts yet.</p>

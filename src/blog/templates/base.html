@@ -3,19 +3,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{% block title %} RiverLearn{% endblock %} </title>
+	<title>{% block title %} RiverLearn|Blog{% endblock %} </title>
 	{% include 'snippets/css.html' %}
+	<link rel="icon" href="{% static "icon/rl.png" %}" class="ui mini image">
+	<link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
 </head> 
 {% autoescape on %}
 
-	<body style="background-color: ivory;">
+	<body  style="background-color: ivory;" >
+		<div class="ui fixed menu">
+           <div class="item">
+            <img class="ui tiny image" src="{% static "icon/rl.png" %}">
+          </div>
+          {% include 'snippets/nav.html' %}
+
+        </div>
+
 
 			<div class="ui two column centered grid">
 	  			<div class="column">
-	  				<div class="ui inverted  stacked segment">
+	  				<div class="ui inverted segment" style="padding-top: 50px;">
 				
-								<h2>Welcome To The RiverLearn Blog</h2>
-								{% include 'snippets/nav.html' %}
+								<h3>Hi there,I'm Riverlearn and welcome to my blog.<br>
+								BlogPosts will be about riverlearn as a company,what it is about,applications and usage.
+								</h3>
+								<br>
 
 								{% block content %}
 							
